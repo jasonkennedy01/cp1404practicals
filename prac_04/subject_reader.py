@@ -12,6 +12,7 @@ def main():
 
 
 def print_subject_details(subjects):
+    """Print subject details including subject code, lecturer and number of students"""
     for subject in subjects:
         subject_code = subject[0]
         lecturer = subject[1]
