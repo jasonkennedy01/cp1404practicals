@@ -13,15 +13,15 @@ def main():
 
 def print_subject_details(subjects):
     """Print subject details including subject code, lecturer and number of students"""
-    longest_lecturer = max((len(subject[1]) for subject in subjects))
-    longest_student_number = max((len(str(subject[-1])) for subject in subjects))
+    longest_lecturer_length = max((len(subject[1]) for subject in subjects))
+    longest_number_of_students = max((len(str(subject[-1])) for subject in subjects))
     for subject in subjects:
         subject_code = subject[0]
         lecturer = subject[1]
         number_of_students = subject[-1]
         print(
-            f"{subject_code} is taught by {lecturer:{longest_lecturer}} and has"
-            f" {number_of_students:{longest_student_number}} students")
+            f"{subject_code} is taught by {lecturer:{longest_lecturer_length}} and has"
+            f" {number_of_students:{longest_number_of_students}} students")
 
 
 def get_data():
