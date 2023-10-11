@@ -1,5 +1,6 @@
 """
-
+CP1404/CP5632 Practical
+Colours and their hex code in a dictionary
 """
 
 COLOUR_TO_CODE = {"Absolute Zero": "#0048ba", "Ash Grey": "#b2beb5", "Beige": "#f5f5dc", "Black": "#000000",
