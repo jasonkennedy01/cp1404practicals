@@ -25,12 +25,12 @@ def main():
             print("Incomplete projects:")
             for project in projects:
                 if not project.is_complete():
-                    print(project)
+                    print("  ", project)
             # print(project for project in projects if not project.is_complete())
             print("Completed projects:")
             for project in projects:
                 if project.is_complete():
-                    print(project)
+                    print("  ", project)
             # print(project for project in projects if project.is_complete())
         elif choice == "F":
             pass
