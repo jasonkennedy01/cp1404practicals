@@ -16,10 +16,10 @@ def main():
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            filename = "Load to file: "
+            filename = "Load to file: "  # error checking needed?
             projects = load_projects(filename)
         elif choice == "S":
-            filename = "Save to file: "
+            filename = "Save to file: "  # error checking needed?
             save_projects(filename, projects)
         elif choice == "D":
             print("Incomplete projects:")
@@ -35,12 +35,15 @@ def main():
         elif choice == "F":
             pass
         elif choice == "A":
-            pass
+            print("Lets add a new project")
+            new_project = Project(*get_new_project_details())
+            projects.append(new_project)
         elif choice == "U":
             for i, project in enumerate(projects):
                 print(i, project)
-            update_project(projects)
-
+            project_choice = int(input("Project choice: "))  # error checking needed
+            print(projects[project_choice])
+            update_project(projects, project_choice)
         else:
             print("Invalid choice")
         print(MENU)
@@ -49,15 +52,22 @@ def main():
     save_projects(FILENAME, projects)
 
 
-def update_project(projects):
-    project_choice = int(input("Project choice: "))  # error checking needed
-    print(projects[project_choice])
+def update_project(projects, project_choice):
     new_percentage = input("New percentage: ")
     new_priority = input("New priority: ")
     if new_percentage != "":
         projects[project_choice].completion = new_percentage
     if new_priority != "":
         projects[project_choice].priority = new_priority
+
+
+def get_new_project_details():
+    name = input("Name: ")  # error checking needed
+    date = input("Start date (dd/mm/yy): ")  # error checking needed
+    priority = input("Priority: ")  # error checking needed
+    cost = input("Cost estimate: $")  # error checking needed
+    completion = input("Percent complete: ")  # error checking needed
+    return name, date, priority, cost, completion
 
 
 def load_projects(filename):
