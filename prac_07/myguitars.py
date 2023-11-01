@@ -1,7 +1,7 @@
 """
 CP1404 Practical
 Estimate: 15 mins 10:53
-actual:
+actual: 35 mins 11:28
 """
 from guitar import Guitar
 
