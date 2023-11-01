@@ -11,7 +11,7 @@ Time spent:
 class Project:
     """Project Class."""
 
-    def __init__(self, name, date, priority, cost, completion):
+    def __init__(self, name="", date="", priority=0, cost=0.0, completion=0):
         """Define the fields for the project object."""
         self.name = name
         self.date = date

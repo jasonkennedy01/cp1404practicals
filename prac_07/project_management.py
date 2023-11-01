@@ -1,7 +1,7 @@
 """
 CP1404 - Project Management Program
 """
-
+import datetime
 from project import Project
 
 FILENAME = "projects.txt"
@@ -53,7 +53,7 @@ def main():
 
 
 def update_project(projects, project_choice):
-    new_percentage = input("New percentage: ")
+    new_percentage = input("New percentage: ")  # error checking needed
     new_priority = input("New priority: ")
     if new_percentage != "":
         projects[project_choice].completion = new_percentage
@@ -63,11 +63,17 @@ def update_project(projects, project_choice):
 
 def get_new_project_details():
     name = input("Name: ")  # error checking needed
-    date = input("Start date (dd/mm/yy): ")  # error checking needed
-    priority = input("Priority: ")  # error checking needed
-    cost = input("Cost estimate: $")  # error checking needed
-    completion = input("Percent complete: ")  # error checking needed
-    return name, date, priority, cost, completion
+    date_string = input("Start date (dd/mm/yyyy): ")  # error checking needed
+    start_date = format_date(date_string)
+    priority = int(input("Priority: "))  # error checking needed
+    cost = int(input("Cost estimate: $"))  # error checking needed
+    completion = int(input("Percent complete: "))  # error checking needed
+    return name, start_date, priority, cost, completion
+
+
+def format_date(date_string):
+    formatted_date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    return formatted_date
 
 
 def load_projects(filename):
@@ -76,7 +82,8 @@ def load_projects(filename):
         infile.readline()
         for line in infile:
             parts = line.strip().split("\t")
-            project = Project(*parts)  # this will need to change when adding date formatting i think
+            start_date = format_date(parts[1])
+            project = Project(parts[0], start_date, int(parts[2]), float(parts[3]), int(parts[4]))
             projects.append(project)
     return projects
 
