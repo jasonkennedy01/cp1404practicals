@@ -3,7 +3,7 @@ CP1404 Project Class
 Estimate: 5 hours
 Time spent:
 11:45 - 11:55 10mins
-12:30 -
+12:30 - 12:55 25mins
 """
 
 
@@ -22,3 +22,6 @@ class Project:
         """Returns a string representation for a project object."""
         return (f"{self.name}, start: {self.date}, priority {self.priority}, "
                 f"estimate: ${self.cost}, completion: {self.completion}%")
+
+    def is_complete(self):
+        return self.completion == "100"

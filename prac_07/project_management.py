@@ -16,11 +16,22 @@ def main():
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            pass
+            filename = "Load to file: "
+            projects = load_projects(filename)
         elif choice == "S":
-            pass
+            filename = "Save to file: "
+            save_projects(filename, projects)
         elif choice == "D":
-            pass
+            print("Incomplete projects:")
+            for project in projects:
+                if not project.is_complete():
+                    print(project)
+            # print(project for project in projects if not project.is_complete())
+            print("Completed projects:")
+            for project in projects:
+                if project.is_complete():
+                    print(project)
+            # print(project for project in projects if project.is_complete())
         elif choice == "F":
             pass
         elif choice == "A":
