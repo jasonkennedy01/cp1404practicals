@@ -56,9 +56,15 @@ def update_project(projects, project_choice):
     new_percentage = input("New percentage: ")  # error checking needed
     new_priority = input("New priority: ")
     if new_percentage != "":
-        projects[project_choice].completion = new_percentage
+        try:
+            projects[project_choice].completion = int(new_percentage)
+        except ValueError:
+            print("Percentage must be a number")
     if new_priority != "":
-        projects[project_choice].priority = new_priority
+        try:
+            projects[project_choice].priority = int(new_priority)
+        except ValueError:
+            print("Priority must be  number")
 
 
 def get_new_project_details():
@@ -74,7 +80,7 @@ def get_new_project_details():
 def get_valid_string(prompt):
     string = input(prompt)
     while string == "":
-        print("Invalid cannot be empty.")
+        print("Invalid string cannot be empty.")
         string = input(prompt)
     return string
 

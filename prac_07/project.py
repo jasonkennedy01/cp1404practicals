@@ -25,4 +25,4 @@ class Project:
                 f"estimate: ${self.cost}, completion: {self.completion}%")
 
     def is_complete(self):
-        return self.completion == "100"
+        return self.completion == 100
