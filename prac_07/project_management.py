@@ -62,13 +62,35 @@ def update_project(projects, project_choice):
 
 
 def get_new_project_details():
-    name = input("Name: ")  # error checking needed
+    name = get_valid_string("Name: ")
     date_string = input("Start date (dd/mm/yyyy): ")  # error checking needed
     start_date = format_date(date_string)
-    priority = int(input("Priority: "))  # error checking needed
-    cost = int(input("Cost estimate: $"))  # error checking needed
-    completion = int(input("Percent complete: "))  # error checking needed
+    priority = get_valid_number(int, "Priority: ")
+    cost = get_valid_number(float, "Cost estimate: $")
+    completion = get_valid_number(int, "Percent complete: ")
     return name, start_date, priority, cost, completion
+
+
+def get_valid_string(prompt):
+    string = input(prompt)
+    while string == "":
+        print("Invalid cannot be empty.")
+        string = input(prompt)
+    return string
+
+
+def get_valid_number(number_type, prompt):
+    is_valid = False
+    while not is_valid:
+        try:
+            number = number_type(input(prompt))
+            if number < 0:
+                print("Invalid number should be >= 0.")
+            else:
+                is_valid = True
+        except ValueError:
+            print("Invalid number")
+    return number
 
 
 def format_date(date_string):
