@@ -37,13 +37,27 @@ def main():
         elif choice == "A":
             pass
         elif choice == "U":
-            pass
+            for i, project in enumerate(projects):
+                print(i, project)
+            update_project(projects)
+
         else:
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using custom-built project management software.")
     save_projects(FILENAME, projects)
+
+
+def update_project(projects):
+    project_choice = int(input("Project choice: "))  # error checking needed
+    print(projects[project_choice])
+    new_percentage = input("New percentage: ")
+    new_priority = input("New priority: ")
+    if new_percentage != "":
+        projects[project_choice].completion = new_percentage
+    if new_priority != "":
+        projects[project_choice].priority = new_priority
 
 
 def load_projects(filename):
