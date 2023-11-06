@@ -13,6 +13,7 @@ def main():
     projects = load_projects(FILENAME)
 
     print(MENU)
+    projects.sort()
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
@@ -23,17 +24,13 @@ def main():
             save_projects(filename, projects)
         elif choice == "D":
             print("Incomplete projects:")
-            for project in projects:
-                if not project.is_complete():
-                    print("  ", project)
-            # print(project for project in projects if not project.is_complete())
+            print("\t" + "\n\t".join(str(project) for project in projects if not project.is_complete()))
             print("Completed projects:")
-            for project in projects:
-                if project.is_complete():
-                    print("  ", project)
-            # print(project for project in projects if project.is_complete())
+            print("\t" + "\n\t".join(str(project) for project in projects if project.is_complete()))
         elif choice == "F":
-            pass
+            date_string = input("Show projects that start after date (dd/mm/yy): ")
+            start_date = format_date(date_string)
+            print("\n".join(str(project) for project in projects if project.date > start_date))
         elif choice == "A":
             print("Lets add a new project")
             new_project = Project(*get_new_project_details())
@@ -53,9 +50,9 @@ def main():
 
 
 def update_project(projects, project_choice):
-    new_percentage = input("New percentage: ")  # error checking needed
+    new_percentage = input("New percentage: ")
     new_priority = input("New priority: ")
-    if new_percentage != "":
+    if new_percentage != "":  # can extract function + can change if statement "" = false
         try:
             projects[project_choice].completion = int(new_percentage)
         except ValueError:
