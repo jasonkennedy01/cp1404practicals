@@ -19,7 +19,7 @@ class ConvertMilesKmApp(App):
         return self.root
 
     def handle_increment(self, value, step):
-        """"""
+        """Handle an increment after a button press and output the result back to the text input."""
         try:
             new_value = int(value) + step
         except ValueError:
@@ -27,7 +27,7 @@ class ConvertMilesKmApp(App):
         self.root.ids.input_miles.text = f"{new_value}"
 
     def handle_conversion(self, miles):
-        """"""
+        """Handle a conversion of miles to kilometres and output to a label widget."""
         try:
             km = float(miles) * MILES_TO_KM_RATE
         except ValueError:
